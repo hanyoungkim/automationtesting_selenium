@@ -1,0 +1,28 @@
+﻿{
+  // Signup details
+  "title": "Mr",
+  "name": "lucas",
+  "password": "Password1!",
+  "day": "9",
+  "month": "March",
+  "year": "1989",
+  "firstName": "Hanyoung",
+  "lastName": "Kim",
+  "address1": "18 Ivy Nola Way",
+  "country": "New Zealand",
+  "state": "Henderson",
+  "city": "Auckland",
+  "zipcode": "0612",
+  "mobileNumber": "02108450284",
+
+
+
+
+
+
+  // "products": [ "iphone X", "Blackberry" ]
+
+
+  // Global details
+  "defaultClassroom": "Lucas 101"
+}
