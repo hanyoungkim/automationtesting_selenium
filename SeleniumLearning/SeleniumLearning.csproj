@@ -20,4 +20,9 @@
     <PackageReference Include="WebDriverManager" Version="2.16.2" />
   </ItemGroup>
 
+	<PropertyGroup>
+		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+	</PropertyGroup>
+
+
 </Project>

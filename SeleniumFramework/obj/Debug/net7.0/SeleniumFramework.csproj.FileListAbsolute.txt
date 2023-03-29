@@ -189,8 +189,8 @@ C:\SeleniumPractice\LucasSelenium\lucasacademy\SeleniumFramework\bin\Debug\net7.
 C:\SeleniumPractice\LucasSelenium\lucasacademy\SeleniumFramework\bin\Debug\net7.0\System.IO.Pipelines.dll
 C:\SeleniumPractice\LucasSelenium\lucasacademy\SeleniumFramework\bin\Debug\net7.0\runtimes\win-x64\nativeassets\netcoreapp2.2\aspnetcorev2_inprocess.dll
 C:\SeleniumPractice\LucasSelenium\lucasacademy\SeleniumFramework\bin\Debug\net7.0\runtimes\win-x86\nativeassets\netcoreapp2.2\aspnetcorev2_inprocess.dll
-C:\SeleniumPractice\LucasSelenium\lucasacademy\automationtesting_selenium_google_classroom\SeleniumFramework\bin\Debug\net7.0\testhost.exe
 C:\SeleniumPractice\LucasSelenium\lucasacademy\automationtesting_selenium_google_classroom\SeleniumFramework\bin\Debug\net7.0\testhost.dll
+C:\SeleniumPractice\LucasSelenium\lucasacademy\automationtesting_selenium_google_classroom\SeleniumFramework\bin\Debug\net7.0\testhost.exe
 C:\SeleniumPractice\LucasSelenium\lucasacademy\automationtesting_selenium_google_classroom\SeleniumFramework\bin\Debug\net7.0\NUnit3.TestAdapter.dll
 C:\SeleniumPractice\LucasSelenium\lucasacademy\automationtesting_selenium_google_classroom\SeleniumFramework\bin\Debug\net7.0\NUnit3.TestAdapter.pdb
 C:\SeleniumPractice\LucasSelenium\lucasacademy\automationtesting_selenium_google_classroom\SeleniumFramework\bin\Debug\net7.0\nunit.engine.dll
