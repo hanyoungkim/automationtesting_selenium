@@ -9,6 +9,15 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**/*Tests.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/path/to/test/project'
+    runtime: 'self-contained'
+    runtimeVersion: '7.0.202'
+
 
 - task: NuGetCommand@2
   inputs:
