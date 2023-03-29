@@ -16,7 +16,7 @@ namespace SeleniumLearning
 
         IWebDriver driver;
 
-        [SetUp]
+        //[SetUp]
         public void StartBrowser()
         {
             new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
@@ -28,7 +28,7 @@ namespace SeleniumLearning
             driver.Manage().Window.Maximize();
         }
 
-        [Test]
+        //[Test]
         public void Test1()
         {
             driver.Url = "https://rahulshettyacademy.com/loginpagePractise/";

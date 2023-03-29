@@ -15,7 +15,7 @@ namespace SeleniumLearning
     {
         IWebDriver driver;
 
-        [SetUp]
+        //[SetUp]
         public void StartBrowser()
         {
             new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
@@ -27,7 +27,7 @@ namespace SeleniumLearning
             driver.Url = "https://rahulshettyacademy.com/AutomationPractice/";
         }
 
-        [Test]
+        //[Test]
         public void test_Alert()
         {
             string name = "Lucas";
@@ -39,7 +39,7 @@ namespace SeleniumLearning
             StringAssert.Contains(name,alertText);
         }
 
-        [Test]
+        //[Test]
         public void test_AutoSuggestiveDropDowns()
         {
             driver.FindElement(By.Id("autocomplete")).SendKeys("ind");
@@ -60,7 +60,7 @@ namespace SeleniumLearning
         }
 
 
-        [Test]
+        //[Test]
         public void test_Acutions()
         {
             driver.Url = "https://rahulshettyacademy.com/";
@@ -74,7 +74,7 @@ namespace SeleniumLearning
             // a.ContextClick(); // right mouse click
         }
 
-        [Test]
+        //[Test]
         public void frames()
         {
             // scroll

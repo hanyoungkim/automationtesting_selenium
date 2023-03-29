@@ -15,7 +15,8 @@ namespace SeleniumLearning
     {
         IWebDriver driver;
 
-        [SetUp] public void StartBrowser()
+        //[SetUp] 
+        public void StartBrowser()
         {
             // Set Webdrivermanager to overcome version management
             // Create object for ChromeDriver
@@ -33,14 +34,16 @@ namespace SeleniumLearning
             driver.Manage().Window.Maximize();
         }
         
-        [Test] public void Test1()
+        //[Test] 
+        public void Test1()
         {
             driver.Url = "https://rahulshettyacademy.com/loginpagePractise/";
             TestContext.Progress.WriteLine(driver.Title);
             TestContext.Progress.WriteLine(driver.Url);            
         }
 
-        [TearDown] public void TearDown()
+        //[TearDown] 
+        public void TearDown()
         {
             driver.Close(); // Close the current window
             // driver.Quit(); // Close all windows

@@ -51,13 +51,22 @@ namespace SeleniumFramework.pageObjects
         private IWebElement BArchiveOnConfirmationPopup;
 
         [FindsBy(How = How.XPath, Using = "//a[@target='_self']//div[contains(text(),'Class 101')]")]
-        private IWebElement BTestClassroom;
+        private IWebElement BClassroom;
+
+        [FindsBy(How = How.LinkText, Using = "Classwork")]
+        private IWebElement BClasswork;
 
 
-        public StreamPage goToTestClassroom()
+        public StreamPage goToClassroom()
         {
-            BTestClassroom.Click();
+            BClassroom.Click();
             return new StreamPage(driver);
+        }
+
+        public ClassworkPage goToClasswork()
+        {
+            BClasswork.Click();
+            return new ClassworkPage(driver);
         }
 
         public IWebElement getCreateOrJoinClassButton()

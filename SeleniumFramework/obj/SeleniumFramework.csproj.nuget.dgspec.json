@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\SeleniumFramework\\SeleniumFramework.csproj": {}
+    "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFramework.csproj": {}
   },
   "projects": {
-    "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\SeleniumFramework\\SeleniumFramework.csproj": {
+    "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFramework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\SeleniumFramework\\SeleniumFramework.csproj",
+        "projectUniqueName": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFramework.csproj",
         "projectName": "SeleniumFramework",
-        "projectPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\SeleniumFramework\\SeleniumFramework.csproj",
+        "projectPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFramework.csproj",
         "packagesPath": "C:\\Users\\lucas.kim\\.nuget\\packages\\",
-        "outputPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\SeleniumFramework\\obj\\",
+        "outputPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

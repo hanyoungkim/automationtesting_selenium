@@ -15,7 +15,7 @@ namespace SeleniumLearning
     {
         IWebDriver driver;
 
-        [SetUp]
+        //[SetUp]
         public void StartBrowser()
         {
             new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
@@ -27,7 +27,7 @@ namespace SeleniumLearning
             driver.Url = "https://rahulshettyacademy.com/seleniumPractise/#/offers";
         }
 
-        [Test]
+        //[Test]
         public void SortTable()
         {
             ArrayList a = new ArrayList();

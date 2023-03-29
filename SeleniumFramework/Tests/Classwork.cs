@@ -1,22 +1,27 @@
-﻿using OpenQA.Selenium;
-using SeleniumFramework.pageObjects;
+﻿using SeleniumFramework.pageObjects;
 using SeleniumFramework.utilities;
-using System.Collections.Immutable;
 
 namespace SeleniumFramework.Tests
 {
     [Order(3)]
     public class Classwork : Base
     {
-        [Order(1), TestCase("lucas.selenium.classroom", "PAssword!@!@"), Category("Regression")]
-        public void ValidLoginTest(String username, String password)
+        [Order(1)]
+        [TestCase("Automation Testing"), Category("Regression")]
+        [TestCase("Manual Testing"), Category("Regression")]
+        [TestCase("Agile Testing"), Category("Regression")]
+        public void createTopic(string topicName)
         {
-            LoginPage loginPage = new LoginPage(getDriver());
-            HomePage homePage = loginPage.validlogin(username, password);
+            LoginAsTeacher();
 
-            homePage.waitForLucas101Display();
+            HomePage homePage = new HomePage(getDriver());
+            homePage.goToClassroom();
 
-            Assert.That(homePage.getCreateOrJoinClassButton().Enabled, Is.True);
+            ClassworkPage classworkPage = homePage.goToClasswork();
+
+            classworkPage.createTopic(topicName);
+
+            StringAssert.Contains(topicName, classworkPage.getFirstLocatedTopic().Text);
         }
     }
 }

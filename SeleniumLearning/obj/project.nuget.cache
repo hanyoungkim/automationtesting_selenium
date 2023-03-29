@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tR4ct9sqW+37gZ1ybeEfnkkUQ8gOImMBEQhQbUGSEy2gdPF5SN1Fzr9qCDtoajEnmX1nwwMyI1ZvmLG0AhERCg==",
+  "dgSpecHash": "teJ+F/hcztqe+8+Nels55BeTKQc8GMBqaeXkvnEVgx+G0P3T4sYlfaCWSDwoA8YU72cdd0CkjNCsWSx4biIu1w==",
   "success": true,
-  "projectFilePath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\SeleniumLearning\\SeleniumLearning.csproj",
+  "projectFilePath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumLearning\\SeleniumLearning.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucas.kim\\.nuget\\packages\\anglesharp\\0.17.1\\anglesharp.0.17.1.nupkg.sha512",
     "C:\\Users\\lucas.kim\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",

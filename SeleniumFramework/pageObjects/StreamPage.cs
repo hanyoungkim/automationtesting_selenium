@@ -1,11 +1,6 @@
-﻿using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using SeleniumExtras.WaitHelpers;
 using SeleniumFramework.utilities;
-using System.Runtime.Intrinsics.X86;
 
 namespace SeleniumFramework.pageObjects
 {
@@ -75,7 +70,7 @@ namespace SeleniumFramework.pageObjects
         [FindsBy(How = How.XPath, Using = "//div[@aria-label='Save options']")]
         private IWebElement BSaveOptions;
 
-        [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Schedule')]")]
+        [FindsBy(How = How.XPath, Using = "//div[text()='Schedule']")]
         private IWebElement BSchedule;
 
         [FindsBy(How = How.XPath, Using = "//input[contains(@aria-label,'Scheduled date')]")]
@@ -90,7 +85,7 @@ namespace SeleniumFramework.pageObjects
         [FindsBy(How = How.XPath, Using = "//table[contains(@role,'presentation')]//tbody//tr[3]//td[2]")]
         private IWebElement BSecondMonday;
 
-        [FindsBy(How = How.XPath, Using = "(//span[contains(text(),'Schedule')])[2]")]
+        [FindsBy(How = How.XPath, Using = "(//span[text()='Schedule'])[2]")]
         private IWebElement BScheduleAnnouncement;
 
         [FindsBy(How = How.XPath, Using = "//div[@aria-live='polite']//div//span[contains(text(),'Scheduled')]")]
@@ -162,7 +157,7 @@ namespace SeleniumFramework.pageObjects
 
             BSaveOptions.Click();
 
-            waitForElementClickableByXPath(driver, "//div[contains(text(),'Schedule')]");
+            waitForElementClickableByXPath(driver, "//div[text()='Schedule']");
 
             BSchedule.Click();
 

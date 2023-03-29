@@ -1,7 +1,5 @@
-﻿using OpenQA.Selenium;
-using SeleniumFramework.pageObjects;
+﻿using SeleniumFramework.pageObjects;
 using SeleniumFramework.utilities;
-using System.Collections.Immutable;
 
 namespace SeleniumFramework.Tests
 {
@@ -41,7 +39,7 @@ namespace SeleniumFramework.Tests
             LoginAsTeacher();
 
             HomePage homePage = new HomePage(getDriver());
-            StreamPage streamPage = homePage.goToTestClassroom();
+            StreamPage streamPage = homePage.goToClassroom();
 
             streamPage.customizeAppearance();
 
@@ -56,7 +54,7 @@ namespace SeleniumFramework.Tests
             LoginAsTeacher();
 
             HomePage homePage = new HomePage(getDriver());
-            StreamPage streamPage = homePage.goToTestClassroom();
+            StreamPage streamPage = homePage.goToClassroom();
 
             streamPage.postAnnouncementWithVideo(postMessage, searchText);
 
@@ -70,7 +68,7 @@ namespace SeleniumFramework.Tests
             LoginAsTeacher();
 
             HomePage homePage = new HomePage(getDriver());
-            StreamPage streamPage = homePage.goToTestClassroom();
+            StreamPage streamPage = homePage.goToClassroom();
 
             streamPage.scheduleAnnouncement(postMessage);
 
@@ -85,7 +83,7 @@ namespace SeleniumFramework.Tests
             LoginAsTeacher();
 
             HomePage homePage = new HomePage(getDriver());
-            StreamPage streamPage = homePage.goToTestClassroom();
+            StreamPage streamPage = homePage.goToClassroom();
 
             streamPage.deleteAnnouncement(announcementToDelete);
         }

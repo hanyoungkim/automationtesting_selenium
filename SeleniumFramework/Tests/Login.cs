@@ -9,7 +9,7 @@ namespace SeleniumFramework.Tests
     public class Login : Base
     {
         [Order(1), TestCase("lucas.selenium.classroom", "PAssword!@!@"), Category("Regression")]
-        public void ValidLoginTest(String username, String password)
+        public void validLoginTest(String username, String password)
         {
             LoginPage loginPage = new LoginPage(getDriver());
             HomePage homePage = loginPage.validlogin(username, password);
@@ -20,7 +20,7 @@ namespace SeleniumFramework.Tests
         }
 
         [Order(2), TestCase("lucas.selenium.classroom", "PAssword#$#$"), Category("Regression")]
-        public void InvalidLoginTest(String username, String password)
+        public void invalidLoginTest(String username, String password)
         {
             LoginPage loginPage = new LoginPage(getDriver());
             loginPage.invalidlogin(username, password);
