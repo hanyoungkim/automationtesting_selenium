@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using SeleniumFramework.Utilities;
+using SeleniumFrameworkTests.Utilities;
 using WebDriverManager.DriverConfigs.Impl;
 
-namespace SeleniumFramework.Old.Tests
+namespace SeleniumFrameworkTests.Old.Tests
 {
     [Parallelizable(ParallelScope.Self)]
     public class WindowHandlers

@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SeleniumFramework.pageObjects;
-using SeleniumFramework.utilities;
+using SeleniumFrameworkTests.pageObjects;
+using SeleniumFrameworkTests.utilities;
 using System.Collections.Immutable;
 
-namespace SeleniumFramework.Tests
+namespace SeleniumFrameworkTests.Tests
 {
     [Order(1)]
     public class Login : Base

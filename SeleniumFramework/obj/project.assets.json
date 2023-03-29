@@ -10563,9 +10563,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFramework.csproj",
-      "projectName": "SeleniumFramework",
-      "projectPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFramework.csproj",
+      "projectUniqueName": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFrameworkTests.csproj",
+      "projectName": "SeleniumFrameworkTests",
+      "projectPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFrameworkTests.csproj",
       "packagesPath": "C:\\Users\\lucas.kim\\.nuget\\packages\\",
       "outputPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\obj\\",
       "projectStyle": "PackageReference",

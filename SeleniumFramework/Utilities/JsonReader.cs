@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumFramework.Utilities
+namespace SeleniumFrameworkTests.Utilities
 {
     public class JsonReader
     {

@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using SeleniumFramework.utilities;
+using SeleniumFrameworkTests.utilities;
 
-namespace SeleniumFramework.pageObjects
+namespace SeleniumFrameworkTests.pageObjects
 {
     internal class ClassworkPage : Base
     {

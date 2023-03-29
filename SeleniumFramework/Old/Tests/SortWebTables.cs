@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using WebDriverManager.DriverConfigs.Impl;
 using System.Collections;
 
-namespace SeleniumFramework.Old.Tests
+namespace SeleniumFrameworkTests.Old.Tests
 {
     // [Parallelizable(ParallelScope.Self)]
     public class SortWebTables

@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
-namespace SeleniumFramework.Old.Pages
+namespace SeleniumFrameworkTests.Old.Pages
 {
     public class old_LoginPage
     {

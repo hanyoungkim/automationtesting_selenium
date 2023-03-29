@@ -8,12 +8,12 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using SeleniumFramework.pageObjects;
-using SeleniumFramework.Utilities;
+using SeleniumFrameworkTests.pageObjects;
+using SeleniumFrameworkTests.Utilities;
 using WebDriverManager.DriverConfigs.Impl;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace SeleniumFramework.utilities
+namespace SeleniumFrameworkTests.utilities
 {
     public class Base
     {

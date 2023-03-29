@@ -1,7 +1,7 @@
-﻿using SeleniumFramework.pageObjects;
-using SeleniumFramework.utilities;
+﻿using SeleniumFrameworkTests.pageObjects;
+using SeleniumFrameworkTests.utilities;
 
-namespace SeleniumFramework.Tests
+namespace SeleniumFrameworkTests.Tests
 {
     [Order(3)]
     public class Classwork : Base

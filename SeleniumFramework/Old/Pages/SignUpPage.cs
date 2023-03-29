@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 
-namespace SeleniumFramework.Old.Pages
+namespace SeleniumFrameworkTests.Old.Pages
 {
     internal class SignUpPage
     {

@@ -1,7 +1,7 @@
-﻿using SeleniumFramework.pageObjects;
-using SeleniumFramework.utilities;
+﻿using SeleniumFrameworkTests.pageObjects;
+using SeleniumFrameworkTests.utilities;
 
-namespace SeleniumFramework.Tests
+namespace SeleniumFrameworkTests.Tests
 {
     [Order(2)]
     public class Stream : Base

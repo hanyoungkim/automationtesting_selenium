@@ -1,9 +1,9 @@
 using OpenQA.Selenium;
-using SeleniumFramework.Old.Pages;
-using SeleniumFramework.utilities;
+using SeleniumFrameworkTests.Old.Pages;
+using SeleniumFrameworkTests.utilities;
 using System.Collections.Immutable;
 
-namespace SeleniumFramework.Old.Tests
+namespace SeleniumFrameworkTests.Old.Tests
 {
     // [Parallelizable(ParallelScope.Children)] // run all test methods in one class parallel
     // [Parallelizable(ParallelScope.Self)] // run all test methods in one class parallel

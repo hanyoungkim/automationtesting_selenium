@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumFramework.Old.Pages
+namespace SeleniumFrameworkTests.Old.Pages
 {
     public class DeliverySetupPage
     {

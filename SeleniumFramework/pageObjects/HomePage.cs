@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
-using SeleniumFramework.utilities;
+using SeleniumFrameworkTests.utilities;
 
-namespace SeleniumFramework.pageObjects
+namespace SeleniumFrameworkTests.pageObjects
 {
     internal class HomePage : Base
     {

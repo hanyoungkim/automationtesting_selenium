@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SeleniumFramework.pageObjects;
-using SeleniumFramework.utilities;
+using SeleniumFrameworkTests.pageObjects;
+using SeleniumFrameworkTests.utilities;
 using System.Collections.Immutable;
 
-namespace SeleniumFramework.Old.Tests
+namespace SeleniumFrameworkTests.Old.Tests
 {
     [Parallelizable(ParallelScope.Children)]
     public class SignUp : Base
