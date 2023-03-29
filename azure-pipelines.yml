@@ -12,7 +12,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: '**/*Tests.csproj'
+    projects: '**/SeleniumFramework.csproj'
     arguments: '--configuration $(buildConfiguration)'
     workingDirectory: '$(System.DefaultWorkingDirectory)/path/to/test/project'
     runtime: 'self-contained'
@@ -35,7 +35,7 @@ steps:
     configuration: '$(buildConfiguration)'
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-     **\*test*.dll
+     **\*test.dll
      !**\*TestAdapter.dll
      !**\obj\**
 
