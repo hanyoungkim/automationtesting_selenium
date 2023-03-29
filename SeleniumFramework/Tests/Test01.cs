@@ -1,5 +1,4 @@
-﻿using SeleniumFrameworkTests.pageObjects;
-using SeleniumFrameworkTests.utilities;
+﻿using SeleniumFrameworkTests.utilities;
 
 namespace SeleniumFrameworkTests.Tests
 {
@@ -7,6 +6,7 @@ namespace SeleniumFrameworkTests.Tests
     public class Test01 : Base
     {
         [Order(1)]
+        [Test]
         public void Test01Test()
         {
             getDriver();
