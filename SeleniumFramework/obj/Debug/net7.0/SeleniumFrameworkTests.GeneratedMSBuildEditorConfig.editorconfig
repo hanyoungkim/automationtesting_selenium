@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SeleniumFrameworkTests
-build_property.ProjectDir = C:\SeleniumPractice\LucasSelenium\lucasacademy\automationtesting_selenium_google_classroom\SeleniumFramework\
+build_property.ProjectDir = C:\SeleniumPractice\LucasSelenium\lucasacademy\automationtesting_selenium_webmail\SeleniumFramework\

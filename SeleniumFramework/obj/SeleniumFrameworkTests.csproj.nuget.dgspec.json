@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFrameworkTests.csproj": {}
+    "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_webmail\\SeleniumFramework\\SeleniumFrameworkTests.csproj": {}
   },
   "projects": {
-    "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFrameworkTests.csproj": {
+    "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_webmail\\SeleniumFramework\\SeleniumFrameworkTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFrameworkTests.csproj",
+        "projectUniqueName": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_webmail\\SeleniumFramework\\SeleniumFrameworkTests.csproj",
         "projectName": "SeleniumFrameworkTests",
-        "projectPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\SeleniumFrameworkTests.csproj",
+        "projectPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_webmail\\SeleniumFramework\\SeleniumFrameworkTests.csproj",
         "packagesPath": "C:\\Users\\lucas.kim\\.nuget\\packages\\",
-        "outputPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_google_classroom\\SeleniumFramework\\obj\\",
+        "outputPath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_webmail\\SeleniumFramework\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

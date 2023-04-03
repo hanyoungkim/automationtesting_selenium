@@ -6,26 +6,36 @@ using System.Collections.Immutable;
 namespace SeleniumFrameworkTests.Tests
 {
     [Order(1)]
+    [Parallelizable(ParallelScope.Children)]
     public class Login : Base
     {
-        [Order(1), TestCase("lucas.selenium.classroom", "PAssword!@!@"), Category("Regression")]
-        public void validLoginTest(String username, String password)
+        [Order(1), TestCase("admin@sksolution.co.nz", "PAssword!@!@"), Category("Regression")]
+        public void validLoginTest(String emailAddress, String password)
         {
             LoginPage loginPage = new LoginPage(getDriver());
-            HomePage homePage = loginPage.validlogin(username, password);
+            HomePage homePage = loginPage.validlogin(emailAddress, password);
 
-            homePage.waitForLucas101Display();
-
-            Assert.That(homePage.getCreateOrJoinClassButton().Enabled, Is.True);
+            Assert.That(homePage.getLogoutButton().Displayed, Is.EqualTo(true));
         }
 
-        [Order(2), TestCase("lucas.selenium.classroom", "PAssword#$#$"), Category("Regression")]
-        public void invalidLoginTest(String username, String password)
+        [Order(2), TestCase("wrongemail@sksolution.co.nz", "PAssword!@!@"), Category("Regression")]
+        public void invalidLoginWithInvalidEmailTest(String invalidEmail, String password)
         {
             LoginPage loginPage = new LoginPage(getDriver());
-            loginPage.invalidlogin(username, password);
+            loginPage.invalidlogin(invalidEmail, password);
 
-            StringAssert.Contains("Wrong password", loginPage.getWrongPasswordMessage().Text);
+            StringAssert.Contains("The login is invalid", loginPage.getInvalidLoginMessage().Text);
         }
+
+        [Order(3), TestCase("admin@sksolution.co.nz", "wrongPassword!@!@"), Category("Regression")]
+        public void invalidLoginWithInvalidPasswordTest(String username, String invalidPassword)
+        {
+            LoginPage loginPage = new LoginPage(getDriver());
+            loginPage.invalidlogin(username, invalidPassword);
+
+            StringAssert.Contains("The login is invalid", loginPage.getInvalidLoginMessage().Text);
+        }
+
+        
     }
 }

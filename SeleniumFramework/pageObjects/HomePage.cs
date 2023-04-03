@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework.Interfaces;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using SeleniumFrameworkTests.utilities;
@@ -14,115 +15,171 @@ namespace SeleniumFrameworkTests.pageObjects
             PageFactory.InitElements(driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = "button[aria-label='Create or join a class']")]
-        private IWebElement BCreateOrJoinClass;
+        [FindsBy(How = How.XPath, Using = "//span[@class='tooltip' and text()='Mail']")]
+        private IWebElement BMail;
 
-        [FindsBy(How = How.XPath, Using = "//span[normalize-space()='Create class']")]
-        private IWebElement BCreateClass;
+        [FindsBy(How = How.XPath, Using = "//span[@class='tooltip' and text()='Contacts']")]
+        private IWebElement BContacts;
 
-        [FindsBy(How = How.XPath, Using = "//input[@type='checkbox']")]
-        private IWebElement CbReadAndUnderstand;
+        [FindsBy(How = How.LinkText, Using = "Inbox")]
+        private IWebElement BInbox;
 
-        [FindsBy(How = How.CssSelector, Using = "div[class='uArJ5e UQuaGc kCyAyd l3F1ye ARrCac HvOprf evJWRb M9Bg4d'] span[class='NPEfkd RveJvd snByac']")]
-        private IWebElement BContinue;
+        [FindsBy(How = How.LinkText, Using = "Compose")]
+        private IWebElement BCompose;
 
-        [FindsBy(How = How.XPath, Using = "//span[normalize-space()='Class name (required)']//following-sibling::input[1]")]
-        private IWebElement TbClassName;
+        [FindsBy(How = How.LinkText, Using = "Drafts")]
+        private IWebElement BDrafts;
 
-        [FindsBy(How = How.XPath, Using = "//span[normalize-space()='Section']//following-sibling::input[1]")]
-        private IWebElement TbSection;
+        [FindsBy(How = How.XPath, Using = "(//a[normalize-space()='Reply'])[1]")]
+        private IWebElement BReply;
 
-        [FindsBy(How = How.XPath, Using = "//span[normalize-space()='Subject']//following-sibling::input[1]")]
-        private IWebElement TbSubject;
+        [FindsBy(How = How.XPath, Using = "//span[normalize-space()='Reply to sender']")]
+        private IWebElement BReplyToSender;
 
-        [FindsBy(How = How.XPath, Using = "//span[normalize-space()='Room']//following-sibling::input[1]")]
-        private IWebElement TbRoom;
+        [FindsBy(How = How.XPath, Using = "(//a[normalize-space()='Logout'])[1]")]
+        private IWebElement BLogout;
 
-        [FindsBy(How = How.XPath, Using = "(//div[@aria-label='Create'])[2]//following-sibling::span[1]//span")]
-        private IWebElement BCreate;
+        [FindsBy(How = How.XPath, Using = "//input[@id='quicksearchbox']")]
+        private IWebElement TbSearch;
 
-        [FindsBy(How = How.XPath, Using = "(//span[contains(text(),'Archive')])[1]")]
-        private IWebElement BArchive;
+        [FindsBy(How = How.XPath, Using = "//a[normalize-space()='Search']")]
+        private IWebElement BSearch;
 
-        [FindsBy(How = How.XPath, Using = "(//button[contains(@aria-label,'Class options')])[1]")]
-        private IWebElement BMoreFor1stClassroom;
+        [FindsBy(How = How.XPath, Using = "(//td[@class='subject'])")]
+        private IList<IWebElement> Messages;
 
-        [FindsBy(How = How.XPath, Using = "(//span[contains(text(),'Archive')])[4]")]
-        private IWebElement BArchiveOnConfirmationPopup;
+        [FindsBy(How = How.XPath, Using = "(//td[@class='subject'])[1]")]
+        private IWebElement FirstMessage;
 
-        [FindsBy(How = How.XPath, Using = "//a[@target='_self']//div[contains(text(),'Class 101')]")]
-        private IWebElement BClassroom;
+        [FindsBy(How = How.XPath, Using = "//a[@id='searchmenulink']")]
+        private IWebElement BSearchOption;
 
-        [FindsBy(How = How.LinkText, Using = "Classwork")]
-        private IWebElement BClasswork;
+        [FindsBy(How = How.XPath, Using = "//iframe[@id='messagecontframe']")]
+        private IWebElement IFrameMessageContFrame;
 
+        [FindsBy(How = How.XPath, Using = "(//td[@class='flag'])//span")]
+        private IWebElement BFlag;
 
-        public StreamPage goToClassroom()
+        [FindsBy(How = How.XPath, Using = "//div[normalize-space()='Message(s) marked successfully.']")]
+        private IWebElement SuccessfullyMarkedsMessage;
+
+        [FindsBy(How = How.XPath, Using = "//select[@id='messagessearchfilter']")]
+        private SelectElement SearchFilter;
+
+        private By BySuccessfullyMarkedMessage = By.XPath("//div[normalize-space()='Message(s) marked successfully.']");
+
+        private By ByMessagesFound = By.XPath("//div[contains(text(),'messages found')]");
+
+        private By ByFlag = By.XPath("following-sibling::td[@class='flag']");
+
+        public IWebElement getFirstMessage()
         {
-            BClassroom.Click();
-            return new StreamPage(driver);
+            return FirstMessage;
         }
 
-        public ClassworkPage goToClasswork()
+        public IWebElement getLogoutButton()
         {
-            BClasswork.Click();
-            return new ClassworkPage(driver);
+            return BLogout;
         }
 
-        public IWebElement getCreateOrJoinClassButton()
+        public ComposePage goToComposePage()
         {
-            return BCreateOrJoinClass;
+            BCompose.Click();
+            return new ComposePage(driver);
         }
 
-        public void waitForLucas101Display()
+        public DraftPage goToDraftsPage()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//a[@target='_self']//div[contains(text(),'Lucas 101')]")));
+            BDrafts.Click();
+            return new DraftPage(driver);
         }
 
-        public StreamPage createNewClassroom(string className, string section, string subject, string room)
+        public ContactsPage goToContactsPage()
         {
-            BCreateOrJoinClass.Click();
-            BCreateClass.Click();
-            CbReadAndUnderstand.Click();
-            BContinue.Click();
-
-            waitForElementClickableByXPath(driver, "//span[normalize-space()='Class name (required)']//following-sibling::input[1]");
-            TbClassName.SendKeys(className);
-
-            waitForElementClickableByXPath(driver, "//span[normalize-space()='Section']//following-sibling::input[1]");
-            TbSection.SendKeys(section);
-
-            waitForElementClickableByXPath(driver, "//span[normalize-space()='Subject']//following-sibling::input[1]");
-            TbSubject.SendKeys(subject);
-
-            waitForElementClickableByXPath(driver, "//span[normalize-space()='Room']//following-sibling::input[1]");
-            TbRoom.SendKeys(room);
-
-            waitForElementClickableByXPath(driver, "//span[normalize-space()='Class name (required)']//following-sibling::input[1]");
-            BCreate.Click();
-
-            return new StreamPage(driver);
+            BContacts.Click();
+            return new ContactsPage(driver);
         }
 
-        public void deleteClassroom()
+        public void searchEmail(string subjectToSearch)
         {
-            BMoreFor1stClassroom.Click();
-            
-            BArchive.Click();
+            TbSearch.SendKeys(subjectToSearch);
+            BSearchOption.Click();
+            BSearch.Click();
 
-            waitForElementClickableByXPath(driver, "(//span[contains(text(),'Archive')])[4]");
-            BArchiveOnConfirmationPopup.Click();
-
-            if (driver.FindElements(By.XPath("//a[@target='_self']//div[contains(text(),'Class 101')]")).Count != 0)
+            try
             {
-                // exists
-                Assert.Fail("The selected classroom was not deleted successfully");
+                foreach (IWebElement message in Messages)
+                {
+                    if (message.Text.Contains(subjectToSearch))
+                    { 
+                        Assert.Pass();
+                    }
+                }
             }
-            else
+            catch (SuccessException)
             {
-                // doesn't exist
-                Assert.Pass();
+                // The test passed, do nothing.
+            }
+            catch (Exception ex)
+            {
+                // Handle any other exception that may occur during the test.
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        public ComposePage selectEmailToReply(string emailToReply)
+        {
+            foreach (IWebElement message in Messages)
+            {
+                if (message.Text.Contains(emailToReply))
+                {
+                    message.Click();
+                }
+            }
+
+            driver.SwitchTo().ParentFrame();
+            driver.SwitchTo().Frame(IFrameMessageContFrame);
+
+            BReplyToSender.Click();
+
+            return new ComposePage(driver);
+        }
+
+        public void flagEmail(string emailToFlag)
+        {
+            foreach (IWebElement message in Messages)
+            {
+                if (message.Text.Contains(emailToFlag))
+                {
+                    message.Click();
+                    message.FindElement(ByFlag).Click();
+                }
+            }
+
+            WaitForElementToBeVisible(driver, BySuccessfullyMarkedMessage);
+
+            SearchFilter.SelectByValue("FLAGGED");
+
+            WaitForElementToBeVisible(driver, ByMessagesFound);
+
+            try
+            {
+                foreach (IWebElement message in Messages)
+                {
+                    if (message.Text.Contains(emailToFlag))
+                    {
+                        Assert.Pass();
+                    }
+                }
+            }
+            catch (SuccessException)
+            {
+                // The test passed, do nothing.
+            }
+            catch (Exception ex)
+            {
+                // Handle any other exception that may occur during the test.
+                Assert.Fail(ex.Message);
             }
         }
     }

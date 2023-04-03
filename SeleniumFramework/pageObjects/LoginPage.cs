@@ -15,36 +15,33 @@ namespace SeleniumFrameworkTests.pageObjects
             PageFactory.InitElements(driver, this);
         }
 
-        [FindsBy(How = How.XPath, Using = "//input[@id='identifierId']")]
+        [FindsBy(How = How.XPath, Using = "//input[@id='user']")]
         private IWebElement TbEmail;
 
-        [FindsBy(How = How.CssSelector, Using = "div[id='identifierNext'] span")]
-        private IWebElement BNextOnEmail;
-
-        [FindsBy(How = How.CssSelector, Using = "div[id='passwordNext'] span")]
-        private IWebElement BNextOnPassword;
-
-        [FindsBy(How = How.CssSelector, Using = "input[name = 'Passwd']")]
+        [FindsBy(How = How.XPath, Using = "//input[@id='pass']")]
         private IWebElement TbPassword;
 
-        [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Wrong password. Try again or click Forgot password')]")]
-        private IWebElement LWrongPassword;
+        [FindsBy(How = How.XPath, Using = "//button[@id='login_submit']")]
+        private IWebElement BLogIn;
 
-        public IWebElement getWrongPasswordMessage()
+        [FindsBy(How = How.XPath, Using = "//div[contains(text(),'The login is invalid.')]")]
+        private IWebElement InvalidLoginMessage;
+
+        private By ByInvalidLoginMessage = By.XPath("//div[contains(text(),'The login is invalid.')]");
+
+        public IWebElement getInvalidLoginMessage()
         {
-            return LWrongPassword;
+            return InvalidLoginMessage;
         }
-        
+
 
         public HomePage validlogin(string emailAddress, string password)
         {
             TbEmail.SendKeys(emailAddress);
-            
-            BNextOnEmail.Click();
 
             TbPassword.SendKeys(password);
 
-            BNextOnPassword.Click();
+            BLogIn.Click();
 
             return new HomePage(driver);
         }
@@ -53,19 +50,11 @@ namespace SeleniumFrameworkTests.pageObjects
         {
             TbEmail.SendKeys(emailAddress);
 
-            BNextOnEmail.Click();
-
             TbPassword.SendKeys(password);
 
-            BNextOnPassword.Click();
+            BLogIn.Click();
 
-            waitForElementVisibleByXpath(driver, "//span[contains(text(),'Wrong password. Try again or click Forgot password')]");
-        }
-
-        public void waitForNextButtonDisplay()
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[id='passwordNext'] span")));
+            WaitForElementToBeVisible(driver, ByInvalidLoginMessage);
         }
     }
 }

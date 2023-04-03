@@ -8,6 +8,7 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using SeleniumFrameworkTests.pageObjects;
 using SeleniumFrameworkTests.Utilities;
 using WebDriverManager.DriverConfigs.Impl;
@@ -58,7 +59,7 @@ namespace SeleniumFrameworkTests.utilities
             driver.Value.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(8);
 
             driver.Value.Manage().Window.Maximize();
-            driver.Value.Url = "https://accounts.google.com/v3/signin/identifier?dsh=S-1777991248%3A1679447350532459&continue=https%3A%2F%2Fclassroom.google.com&ifkv=AQMjQ7RnsutDbe9hfRF7XwaMokg7_Y_DW2jTlK83dcgbDM2DRKblU8YutFueLW6PLJvw_oEPpBaaCw&passive=true&flowName=GlifWebSignIn&flowEntry=ServiceLogin";
+            driver.Value.Url = "https://box5877.bluehost.com:2096/";
         }
 
         public IWebDriver getDriver()
@@ -137,44 +138,66 @@ namespace SeleniumFrameworkTests.utilities
             return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, screenShotName).Build();
         }
 
-        public void LoginAsTeacher()
+        public void LoginAsAdminUser()
         {
             LoginPage loginPage = new LoginPage(getDriver());
-            HomePage homePage = loginPage.validlogin("lucas.selenium.classroom", "PAssword!@!@");
+            HomePage homePage = loginPage.validlogin("admin@sksolution.co.nz", "PAssword!@!@");
 
-            homePage.waitForLucas101Display();
-
-            Assert.That(homePage.getCreateOrJoinClassButton().Enabled, Is.True);
-        }
-
-        public void waitForElementVisibleByXpath(IWebDriver driver, string xPath)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(xPath)));
-        }
-
-        public void waitForElementNotVisibleByXpath(IWebDriver driver, string xPath)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.InvisibilityOfElementLocated(By.XPath(xPath)));
-        }
-
-        public void waitForElementVisibleByCssSelector(IWebDriver driver,string cssSelector)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector(cssSelector)));
-        }
-
-        public void waitForElementClickableByXPath(IWebDriver driver,string xPath)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath(xPath)));
+            WaitForElementToBeClickable(getDriver(), homePage.getLogoutButton());
         }
 
         public void doubleClick(IWebDriver driver, IWebElement iWebElement)
         {
             Actions action = new Actions(driver);
             action.MoveToElement(iWebElement).DoubleClick().Perform();
+        }
+
+        public static void WaitForElementToBeClickable(IWebDriver driver,IWebElement element)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            wait.Until(ExpectedConditions.ElementToBeClickable(element));
+        }
+
+        public static void WaitForElementToBeVisible(IWebDriver driver, By locator)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            wait.Until(ExpectedConditions.ElementIsVisible(locator));
+        }
+
+        public static void Wait(int milliseconds)
+        {
+            Thread.Sleep(milliseconds);
+        }
+
+        public static void JavaScriptClick(IWebDriver driver, IWebElement element)
+        {
+            IJavaScriptExecutor javascriptExecutor = (IJavaScriptExecutor)driver;
+            javascriptExecutor.ExecuteScript("arguments[0].click();", element);
+        }
+
+        public static void WaitUntilAttributeChanges(IWebDriver driver, IWebElement element, string attributeName, string expectedValue)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            wait.Until(ExpectedConditionsEx.AttributeContains(element, attributeName, expectedValue));
+        }
+
+        public static string getProjectDirectory()
+        {
+            string projectDirectory = Directory.GetCurrentDirectory();
+            return Directory.GetParent(Directory.GetParent(Directory.GetParent(projectDirectory)?.FullName)?.FullName)?.FullName;         
+        }
+
+        // Custom class for ExpectedConditionsEx --> This method checks if the attribute value contains the expected value, and returns true if the condition is met.
+        public static class ExpectedConditionsEx
+        {
+            public static Func<IWebDriver, bool> AttributeContains(IWebElement element, string attributeName, string expectedValue)
+            {
+                return driver =>
+                {
+                    string actualValue = element.GetAttribute(attributeName);
+                    return actualValue != null && actualValue.Contains(expectedValue);
+                };
+            }
         }
     }
 }
