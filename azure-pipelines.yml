@@ -2,7 +2,11 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  name: vmlucas01
+  demands: 
+  - msbuild
+  - visualstudio
+  - vstest
 
 steps:
 - task: UseDotNet@2
