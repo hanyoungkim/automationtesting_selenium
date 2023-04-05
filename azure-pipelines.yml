@@ -28,13 +28,3 @@ steps:
     command: 'test'
     projects: '**/*Tests.csproj'
     arguments: '--configuration $(BuildConfiguration)'
-
-- task: DownloadChrome@2
-  inputs:
-    version: 'latest'
-
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: 'echo $env:chrome_bin'
-  displayName: 'Print Chrome Binary Path'
