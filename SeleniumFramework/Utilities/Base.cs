@@ -143,7 +143,7 @@ namespace SeleniumFrameworkTests.utilities
             LoginPage loginPage = new LoginPage(getDriver());
             HomePage homePage = loginPage.validlogin("admin@sksolution.co.nz", "PAssword!@!@");
 
-            WaitForElementToBeClickable(getDriver(), homePage.getLogoutButton());
+            WaitForElementToBeEnabled(getDriver(), homePage.getLogoutButton());
         }
 
         public void doubleClick(IWebDriver driver, IWebElement iWebElement)
@@ -152,17 +152,27 @@ namespace SeleniumFrameworkTests.utilities
             action.MoveToElement(iWebElement).DoubleClick().Perform();
         }
 
-        public static void WaitForElementToBeClickable(IWebDriver driver,IWebElement element)
+        public static void WaitForElementToBeEnabled(IWebDriver driver,IWebElement element)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
             wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
 
-        public static void WaitForElementToBeVisible(IWebDriver driver, By locator)
+        public static void WaitForElementNotToBeVisible(IWebDriver driver, IWebElement element)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-            wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            wait.Until(ExpectedConditions.StalenessOf(element));
         }
+
+
+
+
+
+        //public static void WaitForElementToBeClickable(IWebDriver driver, By locator)
+        //{
+        //    var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+        //    wait.Until(ExpectedConditions.ElementIsVisible(locator));
+        //}
 
         public static void Wait(int milliseconds)
         {
@@ -199,5 +209,16 @@ namespace SeleniumFrameworkTests.utilities
                 };
             }
         }
+
+        public static string GenerateRandomStringWithTodayDate(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new Random();
+            string datePrefix = DateTime.Today.ToString("yyyyMMdd");
+            string randomString = new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+            return datePrefix + randomString;
+        }
+
     }
 }

@@ -27,8 +27,6 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.XPath, Using = "//div[contains(text(),'The login is invalid.')]")]
         private IWebElement InvalidLoginMessage;
 
-        private By ByInvalidLoginMessage = By.XPath("//div[contains(text(),'The login is invalid.')]");
-
         public IWebElement getInvalidLoginMessage()
         {
             return InvalidLoginMessage;
@@ -54,7 +52,7 @@ namespace SeleniumFrameworkTests.pageObjects
 
             BLogIn.Click();
 
-            WaitForElementToBeVisible(driver, ByInvalidLoginMessage);
+            WaitForElementToBeEnabled(driver, InvalidLoginMessage);
         }
     }
 }

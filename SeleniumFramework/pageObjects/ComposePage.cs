@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using SeleniumFrameworkTests.Tests;
 using SeleniumFrameworkTests.utilities;
 
 namespace SeleniumFrameworkTests.pageObjects
@@ -29,19 +30,19 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.LinkText, Using = "Send")]
         private IWebElement BSend;
 
-        [FindsBy(How = How.XPath, Using = "//div[normalize-space()='Message sent successfully.']")]
+        [FindsBy(How = How.XPath, Using = "//div[text()='Message sent successfully.']")]
         private IWebElement SuccessfullySentMessage;
 
-        [FindsBy(How = How.XPath, Using = "//div[normalize-space()='Message saved to Drafts.']")]
+        [FindsBy(How = How.XPath, Using = "//div[text()='Message saved to Drafts.']")]
         private IWebElement SuccessfullySavedToDraftsMessage;
 
-        [FindsBy(How = How.XPath, Using = "//a[normalize-space()='Add Cc']")]
+        [FindsBy(How = How.XPath, Using = "//a[text()='Add Cc']")]
         private IWebElement BAddCc;
 
         [FindsBy(How = How.XPath, Using = "//textarea[@name='_cc']")]
         private IWebElement TaCc;
 
-        [FindsBy(How = How.XPath, Using = "//a[normalize-space()='Add Bcc']")]
+        [FindsBy(How = How.XPath, Using = "//a[text()='Add Bcc']")]
         private IWebElement BAddBcc;
 
         [FindsBy(How = How.XPath, Using = "//textarea[@name='_bcc']")]
@@ -62,10 +63,10 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.XPath, Using = "//div[@aria-label='Insert/edit image']")]
         private IWebElement BInsertImage;
 
-        [FindsBy(How = How.XPath, Using = "//label[normalize-space()='Source']//following-sibling::div//input")]
+        [FindsBy(How = How.XPath, Using = "//label[text()='Source']//following-sibling::div//input")]
         private IWebElement IpImageSource;
 
-        [FindsBy(How = How.XPath, Using = "//span[normalize-space()='Ok']")]
+        [FindsBy(How = How.XPath, Using = "//span[text()='Ok']")]
         private IWebElement BOk;
 
         [FindsBy(How = How.XPath, Using = "//iframe[@id='composebody_ifr']")]
@@ -74,13 +75,9 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.CssSelector, Using = "a[title='Save as draft']")]
         private IWebElement BSave;
 
-        private By BySuccessfullySentMessage = By.XPath("//div[normalize-space()='Message sent successfully.']");
-
-        private By BySuccessfullySavedToDraftsMessage = By.XPath("//div[normalize-space()='Message saved to Drafts.']");
-
         public void saveMessage(string toAddress, string subject)
         {
-            WaitForElementToBeClickable(driver, TaTo);
+            WaitForElementToBeEnabled(driver, TaTo);
 
             TaTo.SendKeys(toAddress);
             ISubject.SendKeys(subject);
@@ -88,14 +85,14 @@ namespace SeleniumFrameworkTests.pageObjects
 
             BSave.Click();
 
-            WaitForElementToBeVisible(driver, BySuccessfullySavedToDraftsMessage);
-
+            WaitForElementToBeEnabled(driver, SuccessfullySavedToDraftsMessage);
+            
             StringAssert.Contains("Message saved to Drafts", SuccessfullySavedToDraftsMessage.Text);
         }
 
         public void sendPlainEmail(string toAddress, string subject, string message)
         {
-            WaitForElementToBeClickable(driver, TaTo);
+            WaitForElementToBeEnabled(driver, TaTo);
 
             TaTo.SendKeys(toAddress);
             ISubject.SendKeys(subject);
@@ -106,19 +103,19 @@ namespace SeleniumFrameworkTests.pageObjects
 
         public void sendEmailWithCCAndBcc(string toAddress, string ccEmail, string bcc, string subject, string message)
         {
-            WaitForElementToBeClickable(driver, TaTo);
+            WaitForElementToBeEnabled(driver, TaTo);
 
             TaTo.SendKeys(toAddress);
 
             BAddCc.Click();
 
-            WaitForElementToBeClickable(driver, TaCc);
+            WaitForElementToBeEnabled(driver, TaCc);
 
             TaCc.SendKeys(ccEmail);
 
             BAddBcc.Click();
 
-            WaitForElementToBeClickable(driver, TaBcc);
+            WaitForElementToBeEnabled(driver, TaBcc);
 
             TaBcc.SendKeys(bcc);
 
@@ -130,7 +127,7 @@ namespace SeleniumFrameworkTests.pageObjects
 
         public void sendEmailWith2Attachments(string toAddress, string subject, string message, string fileName1, string fileName2)
         {
-            WaitForElementToBeClickable(driver, TaTo);
+            WaitForElementToBeEnabled(driver, TaTo);
 
             TaTo.SendKeys(toAddress);
             ISubject.SendKeys(subject);
@@ -142,57 +139,22 @@ namespace SeleniumFrameworkTests.pageObjects
 
             IpAttachment.SendKeys(testFile1Path);
 
-            try
-            {
-                foreach (IWebElement attachment in Attachments)
-                {
-                    if (attachment.Text.Contains(fileName1))
-                    {
-                        Assert.Pass();
-                    }
-                }
-            }
-            catch (SuccessException)
-            {
-                // The test passed, do nothing.
-            }
-            catch (Exception ex)
-            {
-                // Handle any other exception that may occur during the test.
-                Assert.Fail(ex.Message);
-            }
+            Wait(1000);
 
-            Wait(2000);
+            Assert.IsTrue(Attachments.Any(attachment => attachment.Text.Contains(fileName1)));
 
             IpAttachment.SendKeys(testFile2Path);
 
-            try
-            {
-                foreach (IWebElement attachment in Attachments)
-                {
-                    if (attachment.Text.Contains(fileName2))
-                    {
-                        Assert.Pass();
-                    }
-                }
-            }
-            catch (SuccessException)
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail(ex.Message);
-            }
+            Wait(1000);
 
-            Wait(2000);
+            Assert.IsTrue(Attachments.Any(attachment => attachment.Text.Contains(fileName2)));
 
             sendEmail();
         }
 
         public void sendEmailWithImage(string toAddress, string subject)
         {
-            WaitForElementToBeClickable(driver, TaTo);
+            WaitForElementToBeEnabled(driver, TaTo);
 
             TaTo.SendKeys(toAddress);
             ISubject.SendKeys(subject);
@@ -209,7 +171,7 @@ namespace SeleniumFrameworkTests.pageObjects
 
             BInsertImage.Click();
 
-            WaitForElementToBeClickable(driver, IpImageSource);
+            WaitForElementToBeEnabled(driver, IpImageSource);
             IpImageSource.SendKeys("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQw_Md958pXLavljQBQnPQXrcr7nblZjcV0kx6vc29&s");
 
             BOk.Click();
@@ -219,7 +181,7 @@ namespace SeleniumFrameworkTests.pageObjects
 
         public void editDraftedMessageAndSend()
         {
-            WaitForElementToBeClickable(driver,TaMessage);
+            WaitForElementToBeEnabled(driver,TaMessage);
 
             TaMessage.Clear();
             TaMessage.SendKeys("This is a Edited message by automation test." + " Today is -" + DateTime.Today.ToString());
@@ -229,7 +191,7 @@ namespace SeleniumFrameworkTests.pageObjects
 
         public void replyEmail(string message)
         {
-            WaitForElementToBeClickable(driver, TaMessage);
+            WaitForElementToBeEnabled(driver, TaMessage);
             TaMessage.SendKeys(Keys.Enter +  message);
 
             sendEmail();
@@ -239,7 +201,7 @@ namespace SeleniumFrameworkTests.pageObjects
         {
             BSend.Click();
 
-            WaitForElementToBeVisible(driver, BySuccessfullySentMessage);
+            WaitForElementToBeEnabled(driver, SuccessfullySentMessage);
 
             StringAssert.Contains("Message sent successfully", SuccessfullySentMessage.Text);
         }

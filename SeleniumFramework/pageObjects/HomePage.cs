@@ -2,7 +2,9 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using SeleniumFrameworkTests.Tests;
 using SeleniumFrameworkTests.utilities;
+using System.Security.Principal;
 
 namespace SeleniumFrameworkTests.pageObjects
 {
@@ -18,7 +20,7 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.XPath, Using = "//span[@class='tooltip' and text()='Mail']")]
         private IWebElement BMail;
 
-        [FindsBy(How = How.XPath, Using = "//span[@class='tooltip' and text()='Contacts']")]
+        [FindsBy(How = How.XPath, Using = "//a[@class='button-addressbook']")]
         private IWebElement BContacts;
 
         [FindsBy(How = How.LinkText, Using = "Inbox")]
@@ -30,19 +32,19 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.LinkText, Using = "Drafts")]
         private IWebElement BDrafts;
 
-        [FindsBy(How = How.XPath, Using = "(//a[normalize-space()='Reply'])[1]")]
+        [FindsBy(How = How.XPath, Using = "(//a[text()='Reply'])[1]")]
         private IWebElement BReply;
 
-        [FindsBy(How = How.XPath, Using = "//span[normalize-space()='Reply to sender']")]
+        [FindsBy(How = How.XPath, Using = "//span[text()='Reply to sender']")]
         private IWebElement BReplyToSender;
 
-        [FindsBy(How = How.XPath, Using = "(//a[normalize-space()='Logout'])[1]")]
+        [FindsBy(How = How.XPath, Using = "(//a[text()='Logout'])[1]")]
         private IWebElement BLogout;
 
         [FindsBy(How = How.XPath, Using = "//input[@id='quicksearchbox']")]
         private IWebElement TbSearch;
 
-        [FindsBy(How = How.XPath, Using = "//a[normalize-space()='Search']")]
+        [FindsBy(How = How.XPath, Using = "//a[text()='Search']")]
         private IWebElement BSearch;
 
         [FindsBy(How = How.XPath, Using = "(//td[@class='subject'])")]
@@ -60,15 +62,14 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.XPath, Using = "(//td[@class='flag'])//span")]
         private IWebElement BFlag;
 
-        [FindsBy(How = How.XPath, Using = "//div[normalize-space()='Message(s) marked successfully.']")]
-        private IWebElement SuccessfullyMarkedsMessage;
+        [FindsBy(How = How.XPath, Using = "//div[text()='Message(s) marked successfully.']")]
+        private IWebElement SuccessfullyMarkedMessage;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(text(),'messages found')]")]
+        private IWebElement MessagesFound;
 
         [FindsBy(How = How.XPath, Using = "//select[@id='messagessearchfilter']")]
         private SelectElement SearchFilter;
-
-        private By BySuccessfullyMarkedMessage = By.XPath("//div[normalize-space()='Message(s) marked successfully.']");
-
-        private By ByMessagesFound = By.XPath("//div[contains(text(),'messages found')]");
 
         private By ByFlag = By.XPath("following-sibling::td[@class='flag']");
 
@@ -106,25 +107,20 @@ namespace SeleniumFrameworkTests.pageObjects
             BSearchOption.Click();
             BSearch.Click();
 
-            try
+            WaitForElementToBeEnabled(driver, MessagesFound);
+
+            bool testPassed = false;
+
+            foreach (IWebElement message in Messages)
             {
-                foreach (IWebElement message in Messages)
+                if (message.Text.Contains(subjectToSearch))
                 {
-                    if (message.Text.Contains(subjectToSearch))
-                    { 
-                        Assert.Pass();
-                    }
+                    testPassed = true;
+                    break;
                 }
             }
-            catch (SuccessException)
-            {
-                // The test passed, do nothing.
-            }
-            catch (Exception ex)
-            {
-                // Handle any other exception that may occur during the test.
-                Assert.Fail(ex.Message);
-            }
+
+            Assert.IsTrue(testPassed);
         }
 
         public ComposePage selectEmailToReply(string emailToReply)
@@ -152,35 +148,20 @@ namespace SeleniumFrameworkTests.pageObjects
                 if (message.Text.Contains(emailToFlag))
                 {
                     message.Click();
+
+                    Wait(2000);
+
                     message.FindElement(ByFlag).Click();
                 }
             }
 
-            WaitForElementToBeVisible(driver, BySuccessfullyMarkedMessage);
+            WaitForElementToBeEnabled(driver, SuccessfullyMarkedMessage);
 
             SearchFilter.SelectByValue("FLAGGED");
 
-            WaitForElementToBeVisible(driver, ByMessagesFound);
+            WaitForElementToBeEnabled(driver, MessagesFound);
 
-            try
-            {
-                foreach (IWebElement message in Messages)
-                {
-                    if (message.Text.Contains(emailToFlag))
-                    {
-                        Assert.Pass();
-                    }
-                }
-            }
-            catch (SuccessException)
-            {
-                // The test passed, do nothing.
-            }
-            catch (Exception ex)
-            {
-                // Handle any other exception that may occur during the test.
-                Assert.Fail(ex.Message);
-            }
+            Assert.IsTrue(Messages.Any(message => message.Text.Contains(emailToFlag)));
         }
     }
 }

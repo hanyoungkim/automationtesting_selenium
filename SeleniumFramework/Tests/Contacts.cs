@@ -1,13 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SeleniumFrameworkTests.pageObjects;
+using SeleniumFrameworkTests.utilities;
 
 namespace SeleniumFrameworkTests.Tests
 {
-    internal class Contacts
+    [Order(5)]
+    public class Contacts : Base
     {
+        [Order(1), TestCase("Lucas", "Kim", "info@sksolution.co.nz", "02108450284")]
+        public void addNewContact(string firstName, string lastName, string email, string phone)
+        {
+            LoginAsAdminUser();
 
+            HomePage homepage = new HomePage(getDriver());
+            ContactsPage contactsPage = homepage.goToContactsPage();
+
+            contactsPage.createNewGroup();
+
+            contactsPage.addNewContact(firstName, lastName, email, phone);
+            contactsPage.addContactToGroup();
+        }        
     }
 }

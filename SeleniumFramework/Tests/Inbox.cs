@@ -7,6 +7,7 @@ using System.Collections.Immutable;
 namespace SeleniumFrameworkTests.Tests
 {
     [Order(4)]
+    [Parallelizable(ParallelScope.Children)]
     public class Inbox : Base
     {
         [Order(1), TestCase("Find this email")]
