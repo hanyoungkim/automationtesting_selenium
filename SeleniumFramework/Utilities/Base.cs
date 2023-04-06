@@ -12,7 +12,6 @@ using SeleniumExtras.WaitHelpers;
 using SeleniumFrameworkTests.pageObjects;
 using SeleniumFrameworkTests.Utilities;
 using WebDriverManager.DriverConfigs.Impl;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SeleniumFrameworkTests.utilities
 {
@@ -164,7 +163,11 @@ namespace SeleniumFrameworkTests.utilities
             wait.Until(ExpectedConditions.StalenessOf(element));
         }
 
-
+        public static void WaitForTextInElement(IWebDriver driver, By locator, string text)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            wait.Until(ExpectedConditions.TextToBePresentInElementLocated(locator, text));
+        }
 
 
 

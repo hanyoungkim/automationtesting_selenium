@@ -35,7 +35,5 @@ namespace SeleniumFrameworkTests.Tests
 
             StringAssert.Contains("The login is invalid", loginPage.getInvalidLoginMessage().Text);
         }
-
-        
     }
 }
