@@ -2,40 +2,29 @@ trigger:
 - main
 
 pool:
-  name: vmlucas01
+  vmImage: 'windows-latest'
 
 steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
     version: '7.x'
-    includePreviewVersions: true
+  displayName: 'Install .NET SDK'
 
-- script: dotnet tool install --global WebDriverManager.ConsoleApp
-  displayName: 'Install WebDriverManager'
+- task: NuGetToolInstaller@1
 
-- script: |
-    .\tools\WebDriverManager.ConsoleApp.2.11.2\WebDriverManager.exe chrome
-  workingDirectory: $(System.DefaultWorkingDirectory)
-  displayName: 'Download and configure ChromeDriver'
-
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
+- task: NuGetCommand@2
   inputs:
     command: 'restore'
-    projects: '**/*.csproj'
-    feedsToUse: 'config'
-    nugetConfigPath: 'nuget.config'
+    restoreSolution: '**/*.sln'
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
   inputs:
     command: 'build'
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
   inputs:
     command: 'test'
     projects: '**/*Tests.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger trx --no-build'
+    arguments: '--configuration $(BuildConfiguration)'
