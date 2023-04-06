@@ -2,7 +2,9 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  name: Default
+  demands: 
+  - Agent.Name -equals vmlucas01
 
 steps:
 - task: UseDotNet@2
