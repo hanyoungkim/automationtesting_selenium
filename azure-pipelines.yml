@@ -2,9 +2,9 @@ trigger:
 - main
 
 pool:
-  name: Default
+  name: LucasPool
   demands: 
-  - Agent.Name -equals vmlucas01
+  - Agent.Name -equals vmlucas02
 
 steps:
 - task: UseDotNet@2
