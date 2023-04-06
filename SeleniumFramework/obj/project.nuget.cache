@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wDyw2D6ijvoVNQHENYUTrjUA18K7du16mJUlh8OR50q8K3TXofckwp35FhGyFyZtlkYW++dFUuRh+JvyMlhbRw==",
+  "dgSpecHash": "wleajYAZUbTBrhdlRnwPjN8IAZeQFBT0HyeM3mBFPuNpyDUnNHEj3e3aFPGCiu96wvbw1ODyuWoP+FpCPiY7/g==",
   "success": true,
   "projectFilePath": "C:\\SeleniumPractice\\LucasSelenium\\lucasacademy\\automationtesting_selenium_webmail\\SeleniumFramework\\SeleniumFrameworkTests.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,7 @@
     "C:\\Users\\lucas.kim\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\lucas.kim\\.nuget\\packages\\dnsclient\\1.2.0\\dnsclient.1.2.0.nupkg.sha512",
     "C:\\Users\\lucas.kim\\.nuget\\packages\\dotnetseleniumextras.pageobjects\\3.11.0\\dotnetseleniumextras.pageobjects.3.11.0.nupkg.sha512",
-    "C:\\Users\\lucas.kim\\.nuget\\packages\\dotnetseleniumextras.pageobjects.core\\3.11.2\\dotnetseleniumextras.pageobjects.core.3.11.2.nupkg.sha512",
+    "C:\\Users\\lucas.kim\\.nuget\\packages\\dotnetseleniumextras.pageobjects.core\\4.3.0\\dotnetseleniumextras.pageobjects.core.4.3.0.nupkg.sha512",
     "C:\\Users\\lucas.kim\\.nuget\\packages\\dotnetseleniumextras.waithelpers\\3.11.0\\dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
     "C:\\Users\\lucas.kim\\.nuget\\packages\\extentreports\\4.1.0\\extentreports.4.1.0.nupkg.sha512",
     "C:\\Users\\lucas.kim\\.nuget\\packages\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",
@@ -153,7 +153,6 @@
     "C:\\Users\\lucas.kim\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.objectmodel\\4.3.0\\system.objectmodel.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
-    "C:\\Users\\lucas.kim\\.nuget\\packages\\system.reflection.dispatchproxy\\4.4.0\\system.reflection.dispatchproxy.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
@@ -204,26 +203,5 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\lucas.kim\\.nuget\\packages\\webdrivermanager\\2.16.2\\webdrivermanager.2.16.2.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1604",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Project dependency DotNetSeleniumExtras.PageObjects does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.",
-      "libraryId": "DotNetSeleniumExtras.PageObjects",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v7.0"
-      ]
-    },
-    {
-      "code": "NU1604",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Project dependency DotNetSeleniumExtras.PageObjects.Core does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.",
-      "libraryId": "DotNetSeleniumExtras.PageObjects.Core",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v7.0"
-      ]
-    }
-  ]
+  "logs": []
 }
