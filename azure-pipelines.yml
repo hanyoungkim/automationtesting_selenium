@@ -3,32 +3,39 @@ trigger:
 
 pool:
   name: vmlucas01
-  demands: 
-  - msbuild
-  - visualstudio
-  - vstest
 
 steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
     version: '7.x'
-  displayName: 'Install .NET SDK'
+    includePreviewVersions: true
 
-- task: NuGetToolInstaller@1
+- script: dotnet tool install --global WebDriverManager.ConsoleApp
+  displayName: 'Install WebDriverManager'
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'restore'
-    restoreSolution: '**/*.sln'
+- script: |
+    .\tools\WebDriverManager.ConsoleApp.2.11.2\WebDriverManager.exe chrome
+  workingDirectory: $(System.DefaultWorkingDirectory)
+  displayName: 'Download and configure ChromeDriver'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'config'
+    nugetConfigPath: 'nuget.config'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
   inputs:
     command: 'build'
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
   inputs:
     command: 'test'
     projects: '**/*Tests.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
+    arguments: '--configuration $(buildConfiguration) --logger trx --no-build'
