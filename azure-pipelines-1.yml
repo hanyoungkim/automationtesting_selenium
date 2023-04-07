@@ -1,0 +1,35 @@
+trigger:
+- main
+
+pool:
+  name: vm01
+  demands: 
+  - msbuild
+  - visualstudio
+  - vstest
+  - javac
+
+steps:
+- task: NuGetToolInstaller@1
+  displayName: 'Install NuGet'
+  
+- task: NuGetCommand@2
+  displayName: 'Restore NuGet packages'
+  inputs:
+    restoreSolution: '**/*.sln'
+    
+- task: VSBuild@1
+  displayName: 'Build solution'
+  inputs:
+    solution: '**/*.sln'
+    platform: 'Any CPU'
+    configuration: 'Release'
+    
+- task: VSTest@2
+  displayName: 'Run tests'
+  inputs:
+    testAssemblyVer2: |
+      **\$(BuildConfiguration)\*test*.dll
+      !**\obj\**
+    platform: 'Any CPU'
+    configuration: 'Release'
