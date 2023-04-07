@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: vm01
+  name: LucasPool
   demands: 
   - msbuild
   - visualstudio
