@@ -25,11 +25,9 @@ steps:
     platform: 'Any CPU'
     configuration: 'Release'
     
-- task: VSTest@2
-  displayName: 'Run tests'
+
+- task: DotNetCoreCLI@2
   inputs:
-    testAssemblyVer2: |
-      **\$(BuildConfiguration)\*test*.dll
-      !**\obj\**
-    platform: 'Any CPU'
-    configuration: 'Release'
+    command: 'test'
+    projects: '**/*Tests.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
