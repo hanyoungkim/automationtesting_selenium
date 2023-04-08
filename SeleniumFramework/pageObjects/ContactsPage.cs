@@ -61,8 +61,17 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.XPath, Using = "//label[text()='Test Group 01']")]
         private IWebElement CbTestGroup01;
 
+        [FindsBy(How = How.XPath, Using = "//a[text()='Test Group 01']")]
+        private IWebElement LTestGroup01;
+
         [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Group created successfully')]")]
         private IWebElement GroupCreatedMessage;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Contact(s) deleted successfully')]")]
+        private IWebElement ContactDeletedMessage;
+
+        [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Group deleted successfully')]")]
+        private IWebElement GroupDeletedMessage;
 
         [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Loading...')]")]
         private IWebElement LoadingMessage;
@@ -70,7 +79,21 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Successfully added the contacts to this group')]")]
         private IWebElement SuccessfullyAddedContactsToGroupMessage;
 
+        [FindsBy(How = How.XPath, Using = "//a[@title='Delete selected contacts']")]
+        private IWebElement BDeleteSelectedContact;
+
+        [FindsBy(How = How.XPath, Using = "//button[text()='Delete']")]
+        private IWebElement BDelete;
+
+        [FindsBy(How = How.XPath, Using = "//span[text()='Addressbook/group options']")]
+        private IWebElement BGroupOptions;
+
+        [FindsBy(How = How.XPath, Using = "//a[text()='Delete group']")]
+        private IWebElement BDeleteGroup;
+
         
+
+
 
 
         [FindsBy(How = How.XPath, Using = "//table[@role='listbox']//tr")]
@@ -170,9 +193,40 @@ namespace SeleniumFrameworkTests.pageObjects
             //Assert.IsTrue(testPassed);
         }
 
-        public void deleteContact(string name)
+        public void deleteContact()
         {
+            foreach (IWebElement contact in Contacts)
+            {
+                if (contact.Text.Contains("Lucas Kim"))
+                {
+                    contact.Click();
+                }
+            }
 
+            WaitUntilAttributeChanges(driver, BDeleteSelectedContact, "aria-disabled", "false");
+
+            BDeleteSelectedContact.Click();
+
+            WaitForElementToBeEnabled(driver, BDelete);
+
+            BDelete.Click();
+
+            WaitForElementToBeEnabled(driver, ContactDeletedMessage);
+
+            LTestGroup01.Click();
+
+            BGroupOptions.Click();
+
+            WaitUntilAttributeChanges(driver, BDeleteGroup, "aria-disabled", "false");
+            BDeleteGroup.Click();
+
+            WaitForElementToBeEnabled(driver, BDelete);
+
+            BDelete.Click();
+
+            WaitForElementToBeEnabled(driver, ContactDeletedMessage);
+
+            StringAssert.Contains("Group deleted successfully", GroupDeletedMessage.Text);
         }
     }
 }
