@@ -1,7 +1,4 @@
-﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
-using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using SeleniumFrameworkTests.utilities;
 
@@ -80,6 +77,9 @@ namespace SeleniumFrameworkTests.pageObjects
         private IWebElement SuccessfullyAddedContactsToGroupMessage;
 
         [FindsBy(How = How.XPath, Using = "//a[@title='Delete selected contacts']")]
+        private IWebElement ADeleteSelectedContact;
+
+        [FindsBy(How = How.XPath, Using = "//span[text()='Delete selected contacts']")]
         private IWebElement BDeleteSelectedContact;
 
         [FindsBy(How = How.XPath, Using = "//button[text()='Delete']")]
@@ -203,7 +203,7 @@ namespace SeleniumFrameworkTests.pageObjects
                 }
             }
 
-            WaitUntilAttributeChanges(driver, BDeleteSelectedContact, "aria-disabled", "false");
+            WaitUntilAttributeChanges(driver, ADeleteSelectedContact, "aria-disabled", "false");
 
             BDeleteSelectedContact.Click();
 
