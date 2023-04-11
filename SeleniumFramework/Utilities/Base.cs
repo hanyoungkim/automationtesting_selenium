@@ -112,7 +112,6 @@ namespace SeleniumFrameworkTests.utilities
 
                 test.Fail("Test failed", captureScreenShot(driver.Value, fileName));
                 test.Log(Status.Fail, "test failed with logtrace" + stackTrace);
-
             }
             else if (status == TestStatus.Passed)
             {
@@ -168,14 +167,6 @@ namespace SeleniumFrameworkTests.utilities
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
             wait.Until(ExpectedConditions.TextToBePresentInElementLocated(locator, text));
         }
-
-
-
-        //public static void WaitForElementToBeClickable(IWebDriver driver, By locator)
-        //{
-        //    var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-        //    wait.Until(ExpectedConditions.ElementIsVisible(locator));
-        //}
 
         public static void Wait(int milliseconds)
         {

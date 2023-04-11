@@ -205,6 +205,8 @@ namespace SeleniumFrameworkTests.pageObjects
 
             WaitUntilAttributeChanges(driver, ADeleteSelectedContact, "aria-disabled", "false");
 
+            Wait(1000);
+
             BDeleteSelectedContact.Click();
 
             WaitForElementToBeEnabled(driver, BDelete);
@@ -218,6 +220,7 @@ namespace SeleniumFrameworkTests.pageObjects
             BGroupOptions.Click();
 
             WaitUntilAttributeChanges(driver, BDeleteGroup, "aria-disabled", "false");
+
             BDeleteGroup.Click();
 
             WaitForElementToBeEnabled(driver, BDelete);
