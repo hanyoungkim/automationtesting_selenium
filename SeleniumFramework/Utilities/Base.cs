@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -112,6 +113,9 @@ namespace SeleniumFrameworkTests.utilities
 
                 test.Fail("Test failed", captureScreenShot(driver.Value, fileName));
                 test.Log(Status.Fail, "test failed with logtrace" + stackTrace);
+
+                // Add screenshot of the failed test to ADO test result (attachment)
+                TestContext.AddTestAttachment(fileName);
             }
             else if (status == TestStatus.Passed)
             {
