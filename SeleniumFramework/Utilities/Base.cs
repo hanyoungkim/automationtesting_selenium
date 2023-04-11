@@ -115,16 +115,7 @@ namespace SeleniumFrameworkTests.utilities
                 test.Log(Status.Fail, "test failed with logtrace" + stackTrace);
 
                 // Add screenshot of the failed test to ADO test result (attachment)
-                // Capture a screenshot
-                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
-
-                // Save the screenshot to a file
-                string screenshotFileName = $"{TestContext.CurrentContext.Test.FullName}_{DateTime.Now:yyyyMMddHHmmss}.png";
-                string screenshotFilePath = Path.Combine(TestContext.CurrentContext.TestDirectory, screenshotFileName);
-                ss.SaveAsFile(screenshotFilePath, ScreenshotImageFormat.Png);
-
-                // Attach the screenshot to the test result
-                TestContext.AddTestAttachment(screenshotFilePath);
+                
             }
             else if (status == TestStatus.Passed)
             {

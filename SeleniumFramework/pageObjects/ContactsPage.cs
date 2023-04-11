@@ -211,7 +211,7 @@ namespace SeleniumFrameworkTests.pageObjects
 
             WaitForElementToBeEnabled(driver, BDelete);
 
-            // BDelete.Click();
+            BDelete.Click();
 
             WaitForElementToBeEnabled(driver, ContactDeletedMessage);
 
