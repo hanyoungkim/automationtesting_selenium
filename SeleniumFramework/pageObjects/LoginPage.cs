@@ -1,6 +1,4 @@
-﻿using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using SeleniumFrameworkTests.utilities;
 

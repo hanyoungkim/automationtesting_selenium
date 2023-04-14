@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 namespace SeleniumFrameworkTests.Tests
 {
     [Order(1)]
-    [Parallelizable(ParallelScope.Children)]
+    // [Parallelizable(ParallelScope.Children)] --> If I use this, the order of tests in the html report will be messed up. Need to fix later.
     public class Login : Base
     {
         [Order(1), TestCase("admin@sksolution.co.nz", "PAssword!@!@"), Category("Regression")]

@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 namespace SeleniumFrameworkTests.Tests
 {
     [Order(4)]
-    [Parallelizable(ParallelScope.Children)]
+    // [Parallelizable(ParallelScope.Children)] --> If I use this, the order of tests in the html report will be messed up. Need to fix later.
     public class Inbox : Base
     {
         [Order(1), TestCase("Find this email")]

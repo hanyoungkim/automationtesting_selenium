@@ -1,9 +1,11 @@
 ﻿using System.Configuration;
+using System.Text.RegularExpressions;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.DevTools.V108.Page;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
@@ -97,10 +99,9 @@ namespace SeleniumFrameworkTests.utilities
         {
             return new JsonReader();
         }
-
+        
         [TearDown]
         public void AfterTest()
-
         {
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             var stackTrace = TestContext.CurrentContext.Result.StackTrace;
@@ -110,21 +111,39 @@ namespace SeleniumFrameworkTests.utilities
 
             if (status == TestStatus.Failed)
             {
-
+                
                 test.Fail("Test failed", captureScreenShot(driver.Value, fileName));
                 test.Log(Status.Fail, "test failed with logtrace" + stackTrace);
 
-                // Add screenshot of the failed test to ADO test result (attachment)
-                
+                // Save the screenshot file
+                string workingDirectory = Environment.CurrentDirectory;
+                string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName
+                    + Path.DirectorySeparatorChar + "Result"
+                    + Path.DirectorySeparatorChar + "Screenshots For Failed Tests"
+                    + Path.DirectorySeparatorChar + $"SS_{TestContext.CurrentContext.Test.Name.Trim()}_{DateTime.Now.ToString("ddMMyyyy HHmmss")}";
+                string pattern = @"\(\""[^\""]+\"",""[^\""]+\""\)";
+                string replacement = "";
+                string cleanedPath = Regex.Replace(projectDirectory, pattern, replacement).Replace(" ", "_");
+
+                Directory.CreateDirectory(cleanedPath);
+
+                string screenshotPath = Path.Combine(cleanedPath, fileName);
+
+                Screenshot screenshot = captureScreenShot(driver.Value);
+                screenshot.SaveAsFile(screenshotPath);
+
+                TestContext.AddTestAttachment(screenshotPath);
             }
             else if (status == TestStatus.Passed)
             {
-
+                // Do nothing
             }
 
             extent.Flush();
+
             driver.Value.Quit();
         }
+
 
         [OneTimeTearDown]
         public void TearDown()
@@ -138,6 +157,12 @@ namespace SeleniumFrameworkTests.utilities
             var screenshot = ts.GetScreenshot().AsBase64EncodedString;
 
             return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, screenShotName).Build();
+        }
+
+        public Screenshot captureScreenShot(IWebDriver driver)
+        {
+            ITakesScreenshot ts = (ITakesScreenshot)driver;
+            return ts.GetScreenshot();
         }
 
         public void LoginAsAdminUser()
