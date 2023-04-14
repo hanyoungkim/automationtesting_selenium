@@ -9,7 +9,7 @@ namespace SeleniumFrameworkTests.Tests
     // [Parallelizable(ParallelScope.Children)] --> If I use this, the order of tests in the html report will be messed up. Need to fix later.
     public class Login : Base
     {
-        [Order(1), TestCase("admin@sksolution.co.nz", "PAssword!@!@"), Category("Regression")]
+        [Order(1), TestCase("admin@sksolution.co.nz111", "PAssword!@!@"), Category("Regression")]
         public void validLoginTest(String emailAddress, String password)
         {
             LoginPage loginPage = new LoginPage(getDriver());
