@@ -6,7 +6,7 @@ namespace SeleniumFrameworkTests.Tests
     [Order(5)]
     public class Contacts : Base
     {
-        [Order(1), TestCase("Lucas", "Kim", "info@sksolution.co.nz", "02108450284")]
+        [Order(1), TestCase("Lucasaa", "Kim", "info@sksolution.co.nz", "02108450284")]
         public void addNewContact(string firstName, string lastName, string email, string phone)
         {
             LoginAsAdminUser();
@@ -20,7 +20,7 @@ namespace SeleniumFrameworkTests.Tests
             contactsPage.addContactToGroup();
         }
 
-        [Order(2), TestCase("Lucas", "Kim", "info@sksolution.co.nz", "02108450284")]
+        [Order(2), TestCase("Lucasbb", "Kim", "info@sksolution.co.nz", "02108450284")]
         public void deleteContact(string firstName, string lastName, string email, string phone)
         {
             LoginAsAdminUser();
