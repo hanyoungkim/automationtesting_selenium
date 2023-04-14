@@ -120,14 +120,15 @@ namespace SeleniumFrameworkTests.utilities
                 string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName
                     + Path.DirectorySeparatorChar + "Result"
                     + Path.DirectorySeparatorChar + "Screenshots For Failed Tests"
-                    + Path.DirectorySeparatorChar + $"SS_{TestContext.CurrentContext.Test.Name.Trim()}_{DateTime.Now.ToString("ddMMyyyy HHmmss")}";
-                string pattern = @"\(\""[^\""]+\"",""[^\""]+\""\)";
-                string replacement = "";
-                string cleanedPath = Regex.Replace(projectDirectory, pattern, replacement).Replace(" ", "_");
+                    + Path.DirectorySeparatorChar + $"SS_{TestContext.CurrentContext.Test.MethodName.Trim()}_{DateTime.Now.ToString("ddMMyyyy HHmmss")}";
 
-                Directory.CreateDirectory(cleanedPath);
+                //string pattern = @"\(\""[^\""]+\"",""[^\""]+\""\)";
+                //string replacement = "";
+                //string cleanedPath = Regex.Replace(projectDirectory, pattern, replacement).Replace(" ", "_");
 
-                string screenshotPath = Path.Combine(cleanedPath, fileName);
+                Directory.CreateDirectory(projectDirectory);
+
+                string screenshotPath = Path.Combine(projectDirectory, fileName);
 
                 Screenshot screenshot = captureScreenShot(driver.Value);
                 screenshot.SaveAsFile(screenshotPath);
