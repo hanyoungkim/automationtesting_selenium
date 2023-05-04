@@ -91,14 +91,8 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.XPath, Using = "//a[text()='Delete group']")]
         private IWebElement BDeleteGroup;
 
-        
-
-
-
-
         [FindsBy(How = How.XPath, Using = "//table[@role='listbox']//tr")]
         private IList<IWebElement> Contacts;
-
 
         public void createNewGroup()
         {
@@ -175,9 +169,10 @@ namespace SeleniumFrameworkTests.pageObjects
             // This code uses the Any method from LINQ to determine whether any element in the Contacts list satisfies the given condition.
             // If at least one contact's text contains the string "Lucas Kim", testPassed will be set to true.
             // Then the Assert.IsTrue method is called to assert that testPassed is true, indicating that the test has passed.
+
+            // Assert.IsTrue(Contacts.Any(contact => contact.Text.Contains("Lucas Kim")));
             bool testPassed = Contacts.Any(contact => contact.Text.Contains("Lucas Kim"));
             Assert.IsTrue(testPassed);
-            // Assert.IsTrue(Contacts.Any(contact => contact.Text.Contains("Lucas Kim")));
 
             // --> Use if statement
             //bool testPassed = false;

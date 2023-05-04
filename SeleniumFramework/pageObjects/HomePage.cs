@@ -68,8 +68,23 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.XPath, Using = "//div[contains(text(),'messages found')]")]
         private IWebElement MessagesFound;
 
+        [FindsBy(How = How.XPath, Using = "//div[contains(text(),'moved to Trash successfully.')]")]
+        private IWebElement MessagesMovedToTrashMessage;
+
         [FindsBy(How = How.XPath, Using = "//select[@id='messagessearchfilter']")]
         private SelectElement SearchFilter;
+
+        [FindsBy(How = How.XPath, Using = "//a[@id='listselectmenulink']")]
+        private IWebElement BSelectMenu;
+
+        [FindsBy(How = How.LinkText, Using = "Delete")]
+        private IWebElement BDelete;
+
+        [FindsBy(How = How.LinkText, Using = "Sent")]
+        private IWebElement BSent;
+
+        [FindsBy(How = How.XPath, Using = "//span[@class='icon mail']")]
+        private IWebElement BAll;
 
         private By ByFlag = By.XPath("following-sibling::td[@class='flag']");
 
@@ -162,6 +177,47 @@ namespace SeleniumFrameworkTests.pageObjects
             WaitForElementToBeEnabled(driver, MessagesFound);
 
             Assert.IsTrue(Messages.Any(message => message.Text.Contains(emailToFlag)));
+        }
+
+        public void DeleteAllEmailsFromInbox()
+        {
+            BSelectMenu.Click();
+
+            WaitForElementToBeEnabled(driver, BAll);
+
+            BAll.Click();
+
+            Wait(1000);
+
+            WaitForElementToBeEnabled(driver, BDelete);
+
+            BDelete.Click();
+
+            WaitForElementToBeEnabled(driver, MessagesMovedToTrashMessage);
+        }
+
+        public void goToSentFolder()
+        {
+            BSent.Click();
+
+            WaitForElementToBeEnabled(driver, FirstMessage);
+        }
+
+        public void DeleteAllEmailsFromSent()
+        {
+            BSelectMenu.Click();
+
+            WaitForElementToBeEnabled(driver, BAll);
+
+            BAll.Click();
+
+            Wait(1000);
+
+            WaitForElementToBeEnabled(driver, BDelete);
+
+            BDelete.Click();
+
+            WaitForElementToBeEnabled(driver, MessagesMovedToTrashMessage);
         }
     }
 }

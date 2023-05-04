@@ -119,8 +119,8 @@ namespace SeleniumFrameworkTests.utilities
                 string workingDirectory = Environment.CurrentDirectory;
                 string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName
                     + Path.DirectorySeparatorChar + "Result"
-                    + Path.DirectorySeparatorChar + "Screenshots For Failed Tests"
-                    + Path.DirectorySeparatorChar + $"SS_{TestContext.CurrentContext.Test.MethodName.Trim()}_{DateTime.Now.ToString("ddMMyyyy HHmmss")}";
+                    + Path.DirectorySeparatorChar + "Screenshots_For_Failed_Tests"
+                    + Path.DirectorySeparatorChar + $"SS_{TestContext.CurrentContext.Test.MethodName.Trim()}_{DateTime.Now.ToString("ddMMyyyy_HHmmss")}";
 
                 //string pattern = @"\(\""[^\""]+\"",""[^\""]+\""\)";
                 //string replacement = "";
