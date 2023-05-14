@@ -86,6 +86,11 @@ namespace SeleniumFrameworkTests.pageObjects
         [FindsBy(How = How.XPath, Using = "//span[@class='icon mail']")]
         private IWebElement BAll;
 
+        [FindsBy(How = How.XPath, Using = "(//span[contains(text(),'Settings')])[1]")]
+        private IWebElement BSettings;
+
+        
+
         private By ByFlag = By.XPath("following-sibling::td[@class='flag']");
 
         public IWebElement getFirstMessage()
@@ -102,6 +107,12 @@ namespace SeleniumFrameworkTests.pageObjects
         {
             BCompose.Click();
             return new ComposePage(driver);
+        }
+
+        public SettingsPage goToSettingsPage()
+        {
+            BSettings.Click();
+            return new SettingsPage(driver);
         }
 
         public DraftPage goToDraftsPage()

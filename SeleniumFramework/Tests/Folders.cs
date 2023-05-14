@@ -3,8 +3,8 @@ using SeleniumFrameworkTests.utilities;
 
 namespace SeleniumFrameworkTests.Tests
 {
-    [Order(99)]
-    public class CleanUp : Base
+    [Order(6)]
+    public class Folders : Base
     {
         [Test, Order(1)]
         public void cleanUpAllTestData()
@@ -12,9 +12,10 @@ namespace SeleniumFrameworkTests.Tests
             LoginAsAdminUser();
 
             HomePage homepage = new HomePage(getDriver());
-            homepage.DeleteAllEmailsFromInbox();
-            homepage.goToSentFolder();
-            homepage.DeleteAllEmailsFromSent();
+            SettingsPage settingsPage = homepage.goToSettingsPage();
+
+
+
         }
     }
 }
