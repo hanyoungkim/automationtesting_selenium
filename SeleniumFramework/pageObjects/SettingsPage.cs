@@ -39,14 +39,14 @@ namespace SeleniumFrameworkTests.pageObjects
 
         
 
-        [FindsBy(How = How.CssSelector, Using = "input[name='_name']")]
-        private IWebElement IpName;
+        //[FindsBy(How = How.CssSelector, Using = "input[name='_name']")]
+        //private IWebElement IpName;
 
-        [FindsBy(How = How.CssSelector, Using = "input[name='_name']")]
-        private IWebElement IpName;
+        //[FindsBy(How = How.CssSelector, Using = "input[name='_name']")]
+        //private IWebElement IpName;
 
-        [FindsBy(How = How.CssSelector, Using = "input[name='_name']")]
-        private IWebElement IpName;
+        //[FindsBy(How = How.CssSelector, Using = "input[name='_name']")]
+        //private IWebElement IpName;
 
     }
 }
