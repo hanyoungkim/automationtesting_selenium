@@ -1,11 +1,8 @@
-﻿using System.Configuration;
-using System.Text.RegularExpressions;
-using AventStack.ExtentReports;
+﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.DevTools.V108.Page;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
@@ -13,6 +10,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using SeleniumFrameworkTests.pageObjects;
 using SeleniumFrameworkTests.Utilities;
+using System.Configuration;
 using WebDriverManager.DriverConfigs.Impl;
 
 
@@ -111,7 +109,6 @@ namespace SeleniumFrameworkTests.utilities
 
             if (status == TestStatus.Failed)
             {
-                
                 test.Fail("Test failed", captureScreenShot(driver.Value, fileName));
                 test.Log(Status.Fail, "test failed with logtrace" + stackTrace);
 
