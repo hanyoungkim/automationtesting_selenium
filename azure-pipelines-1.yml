@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: lucas01
+  name: Default
   demands: 
   - msbuild
   - visualstudio
