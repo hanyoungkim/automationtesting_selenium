@@ -4,7 +4,7 @@ trigger:
 pool:
   name: LucasPool
   demands:
-  - Agent.Name -equals lucasvm02
+  - Agent.Name -equals vm01
 
 steps:
 - task: UseDotNet@2
